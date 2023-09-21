@@ -10,9 +10,9 @@ N/A
 
 ## Usage
 
+https://ericolson1977.github.io/Password-Generator--Challenge-3/
 
-
-
+![Alt text](assets/images/ericolson1977.github.io_Password-Generator--Challenge-3_.png)
 
 ## Credits
 
