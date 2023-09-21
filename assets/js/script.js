@@ -13,28 +13,32 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
+
+
 function generatePassword() {
   var userInput = prompt("How many charaters would you like in you password?");
-  
   if ((userInput <= 7) || (userInput >= 129)) {
     alert ("Password length must be between 8 and 128 characters.");
     generatePassword();
-    return;
-  }
-} 
-
-  var includeSpecial = confirm("Would you like to inclue special charatcers?");
+    return "";
+  } 
+  
+  var includeSpecial = confirm("Would you like to include special charatcers?");
   var includeNumberic = confirm("Would you like to include numeric characters?");
   var includeLower = confirm("Would you like to include lowercase charaters?");
   var includeUpper = confirm("Would you like to include uppercase charaters?");
   
+  if (!includeSpecial && !includeNumberic && !includeLower && !includeUpper) {
+    alert("You must pick at least one character type.");
+    return ""; 
+  }
+  
+  var characters = "";
   var specialCharaters = "!@#$%^&*()_+{}[]|;:,.<>?";
   var numeric = "0123456789";
   var lowerCase = "abcdefghijklmnopqrstuvwxyz";
   var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-  var characters = "";
-
+  
   if (includeSpecial) {
     characters += specialCharaters;
   }
@@ -47,8 +51,12 @@ function generatePassword() {
   if (includeUpper) {
     characters += upperCase
   }
-
-  if (characters === "") {
-    alert("You must pick at least one character type.");
-    generatePassword(); 
+  
+  var password = "";
+  
+  for (var i = 0; i < userInput; i++) {
+    var random = Math.floor(Math.random() * characters.length);
+    password += characters.charAt(random);
   }
+  return password;
+}
